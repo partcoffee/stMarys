@@ -4,13 +4,14 @@
 
 
 /* Fonts */
-$primary: 'Lato', sans-serif;
+$primary: 'Lato', 'Helvetica', Arial, sans-serif;
 $secondary: 'Lato', 'Helvetica', Arial, sans-serif;
 
 
 /* Colours */
 $main-color: #555;
 $highlight-color: #4caac6;
+$black: #222;
 
 
 /* Other */
@@ -75,7 +76,51 @@ body {
     #Main_Style
 \*------------------------------------*/
 
-.class {}
+header {
+	background: $black;
+	color: #FFF;
+	padding: 180px 0 0;
+	position: relative;
+	text-transform: uppercase;
+	text-align: center;
+	width: 100%;
+
+	h1, h2 {
+		margin: 0
+	}
+
+	h1 {
+		font-size: 20px;
+	}
+
+	h2 {
+		font-size: 14px;
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    #Element_Style
+\*------------------------------------*/
+
+.scroll {
+	display: block;
+	height: 60px;
+	margin: 160px auto 0;
+	width: 42px;
+}
+
+.icon-chevron-thin-down {
+	box-sizing: content-box;
+	display: block;
+	fill: #FFF;
+	height: 18px;
+	padding: 12px;
+	width: 18px;
+}
 
 
 

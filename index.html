@@ -13,15 +13,39 @@ www.domain.com
 <meta name="description" content="Description">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/style.css">
-<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
 </head>
 <body>
+
+<!--
+=====================================================
+  SVG
+=====================================================
+-->
+
+<svg display="none" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-chevron-thin-down" viewBox="0 0 1024 1024">
+	<path class="path1" d="M891.802 312.781c13.926-13.722 36.301-13.722 50.125 0s13.875 35.891 0 49.613l-404.89 400.896c-13.824 13.722-36.198 13.722-50.125 0l-404.89-400.896c-13.824-13.722-13.824-35.891 0-49.613 13.875-13.722 36.301-13.722 50.125 0l379.853 365.619 379.802-365.619z"></path>
+</symbol>
+</defs>
+</svg>
 
 <!--
 =====================================================
   Section
 =====================================================
 -->
+
+<header>
+	<h1>Title</h1>
+	<h2>Sub-thing</h2>
+	<a href="#" class="scroll">
+		<svg class="icon-chevron-thin-down">
+			<use xlink:href="#icon-chevron-thin-down"></use>
+		</svg>
+	</a>
+</header>
 
 
 

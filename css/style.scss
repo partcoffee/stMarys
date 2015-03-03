@@ -4,25 +4,24 @@
 
 
 /* Fonts */
-$primary: 'Source Sans Pro', sans-serif;
-$secondary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$primary: 'source-sans-pro', sans-serif; /* Primary font for headlines etc. */
+$secondary: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Secondary font for body text */
+$display: amatic-sc, sans-serif;
 
 
 /* Colours */
-$main-color: #555;
-$highlight-color: #4caac6;
-$dark-grey: #394042;
+$main-color: #555; /* Grey */
+$highlight-color: #574f51; /* Gold */
+$black: #212121; /* Off-black */
+
+
+/* Variables */
+$spacing: 100px; /* Space between image and text */
+$padding: 100px; /* Space above and below sections */
+$background: #FFF #fafafa #FFF #fafafa #FFF #fafafa; /* Background colours for sections - in order */
 
 
 /* Other */
-@mixin vertical-align {
-	position: absolute;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
-}
-
 @mixin animate($time) {
 	-webkit-transition: $time;
 	-moz-transition: $time;
@@ -34,13 +33,6 @@ $dark-grey: #394042;
 /* Import */
 /* @import 'grid'; */
 /* @import 'retina'; */
-
-
-/* Variables */
-$spacing: 80px; /* Space between image and text */
-$padding: 160px; /* Space above and below sections */
-$background: #FFF #f5f5f5 #FFF #f6f6f6 #eee; /* Background colours for sections - in order */
-
 
 
 
@@ -61,6 +53,7 @@ html, body {
 body {
 	-webkit-text-size-adjust: 100%; /* Because iPhones are dumb sometimes. */
 	font-weight: normal;
+	font-style: normal;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -122,10 +115,54 @@ section {
     #Main
 \*------------------------------------*/
 
-header {
-	background: #222;
-	padding: 180px 0;
+nav {
+	background: #FFF;
+	box-shadow: 2px 4px 14px rgba(0,0,0,0.05);
+	height: 54px;
+	position: absolute;
+	/* position: fixed; */
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+
+.navbar {
+	margin: 0 auto;
+	max-width: 980px;
+	padding-top: 20px;
+	position: relative;
 	text-align: center;
+	width: 100%;
+
+	a {
+		color: #666;
+		font: 500 14px/1 $primary;
+		padding: 25px 0 0 20px;
+	}
+}
+
+header {
+	background: $black url('https://unsplash.imgix.net/reserve/fqUehZ3ZRru2Kh11qDBT_IMG_0042.jpg') center bottom no-repeat;
+	background-size: cover;
+	color: #FFF;
+	margin-top: 54px;
+	padding: 200px 0;
+	text-align: center;
+
+	h2 {
+		color: #FFF;
+		font-size: 18px;
+	}
+}
+
+footer {
+	background: $black;
+	color: rgba(white, 0.8);
+	font: 9px/22px $secondary;
+	letter-spacing: 2px;
+	padding: 60px 30px 50px;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 
@@ -136,7 +173,33 @@ header {
     #Element
 \*------------------------------------*/
 
-.class {}
+section {
+
+	&:first-of-type {
+		padding: 100px 0 (100px-14);
+
+		h2, p, a {
+			padding: 0;
+			width: 100%;
+		}
+	}
+}
+
+.break {
+	border-top: 1px solid #FFF;
+	display: block;
+	height: 1px;
+	margin: 22px 0 20px;
+	width: 10%;
+}
+
+.cover {
+	background: url('../img/cover.jpg') center no-repeat;
+	background-attachment: fixed;
+	background-size: 100%;
+	height: 580px;
+	width: 100%;
+}
 
 
 
@@ -146,23 +209,34 @@ header {
     #Typography
 \*------------------------------------*/
 
-h1, h2, h3 {
-	font-family: $primary;
+h1 {
+	font: 500 80px/1 $display;
+	margin: 10px 0 0;
+	padding: 0 30px;
+	text-transform: uppercase;
 }
 
 h2 {
-	font: 700 16px/20px $primary;
+	color: $highlight-color;
+	font: 600 20px/1 $primary;
 	letter-spacing: 1px;
+	margin: 20px 0 0 (-22px/20);
 	text-transform: uppercase;
 }
 
 p {
+	color: $main-color;
 	font: 14px/24px $secondary;
 }
 
 a {
-	color: $main-color;
+	@include animate(0.3s ease-out);
+	color: $highlight-color;
 	text-decoration: none;
+
+	&:hover {
+		color: $main-color;
+	}
 }
 
 
@@ -173,9 +247,13 @@ a {
     #Responsive
 \*------------------------------------*/
 
-@media only screen and (min-width: 940px) {
+@media only screen and (min-width: 970px) {
+	.navbar {
+		text-align: right;
+	}
+
 	.contain {
-		max-width: 940px;
+		max-width: 970px;
 	}
 
 	section {
@@ -189,7 +267,7 @@ a {
 			width: 50%;
 		}
 
-		&:nth-of-type(odd) {
+		&:nth-of-type(odd):not(:first-of-type) {
 			img {
 				float: right;
 				padding-left: ($spacing/2);
@@ -201,7 +279,7 @@ a {
 			}
 		}
 
-		&:nth-of-type(even) {
+		&:nth-of-type(even):not(:first-of-type) {
 			img {
 				float: left;
 				padding-right: ($spacing/2);

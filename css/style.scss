@@ -4,14 +4,14 @@
 
 
 /* Fonts */
-$primary: 'Lato', 'Helvetica', Arial, sans-serif;
-$secondary: 'Lato', 'Helvetica', Arial, sans-serif;
+$primary: 'Source Sans Pro', sans-serif;
+$secondary: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 
 /* Colours */
 $main-color: #555;
 $highlight-color: #4caac6;
-$black: #222;
+$dark-grey: #394042;
 
 
 /* Other */
@@ -32,13 +32,14 @@ $black: #222;
 
 
 /* Import */
-@import 'grid';
-@import 'retina';
+/* @import 'grid'; */
+/* @import 'retina'; */
 
-/*
-Reference:
-@include retina-image($name, 0px 0px);
-*/
+
+/* Variables */
+$spacing: 80px; /* Space between image and text */
+$padding: 160px; /* Space above and below sections */
+$background: #FFF #f5f5f5 #FFF #f6f6f6 #eee; /* Background colours for sections - in order */
 
 
 
@@ -49,10 +50,12 @@ Reference:
 \*------------------------------------*/
 
 html, body {
+	font-size: 100%;
 	width: 100%;
 	height: 100%;
 	padding: 0;
 	margin: 0;
+	vertical-align: baseline;
 }
 
 body {
@@ -68,34 +71,61 @@ body {
 	box-sizing: border-box;
 }
 
+img {
+	max-width: 100%;
+}
+
+ul, li {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+img {
+	max-width: 100%;
+}
+
 
 
 
 
 /*------------------------------------*\
-    #Main_Style
+    #Grid
+\*------------------------------------*/
+
+section {
+	padding: 80px 0;
+	width: 100%;
+
+	h2 {
+		padding-top: 40px;
+	}
+}
+
+.contain {
+	margin: 0 auto;
+	max-width: 500px;
+	padding: 0 30px;
+}
+
+@for $i from 1 through length($background) {
+	section:nth-of-type(#{$i}) {
+		background-color: nth($background, $i);
+	}
+}
+
+
+
+
+
+/*------------------------------------*\
+    #Main
 \*------------------------------------*/
 
 header {
-	background: $black;
-	color: #FFF;
-	padding: 180px 0 0;
-	position: relative;
-	text-transform: uppercase;
+	background: #222;
+	padding: 180px 0;
 	text-align: center;
-	width: 100%;
-
-	h1, h2 {
-		margin: 0
-	}
-
-	h1 {
-		font-size: 20px;
-	}
-
-	h2 {
-		font-size: 14px;
-	}
 }
 
 
@@ -103,24 +133,10 @@ header {
 
 
 /*------------------------------------*\
-    #Element_Style
+    #Element
 \*------------------------------------*/
 
-.scroll {
-	display: block;
-	height: 60px;
-	margin: 160px auto 0;
-	width: 42px;
-}
-
-.icon-chevron-thin-down {
-	box-sizing: content-box;
-	display: block;
-	fill: #FFF;
-	height: 18px;
-	padding: 12px;
-	width: 18px;
-}
+.class {}
 
 
 
@@ -134,22 +150,19 @@ h1, h2, h3 {
 	font-family: $primary;
 }
 
+h2 {
+	font: 700 16px/20px $primary;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
 p {
-	font-family: $secondary;
+	font: 14px/24px $secondary;
 }
 
 a {
-	@include animate(0.3s);
 	color: $main-color;
 	text-decoration: none;
-}
-
-a:hover {
-	color: lighten($main-color, 30%);
-}
-
-li {
-	font-family: $secondary;
 }
 
 
@@ -160,7 +173,53 @@ li {
     #Responsive
 \*------------------------------------*/
 
-@media only screen and (min-width: 100px) {}
+@media only screen and (min-width: 940px) {
+	.contain {
+		max-width: 940px;
+	}
+
+	section {
+		padding: $padding 0;
+
+		h2 {
+			padding-top: 0;
+		}
+
+		h2, p, img {
+			width: 50%;
+		}
+
+		&:nth-of-type(odd) {
+			img {
+				float: right;
+				padding-left: ($spacing/2);
+			}
+
+			h2, p {
+				float: left;
+				padding-right: ($spacing/2);
+			}
+		}
+
+		&:nth-of-type(even) {
+			img {
+				float: left;
+				padding-right: ($spacing/2);
+			}
+
+			h2, p {
+				float: right;
+				padding-left: ($spacing/2);
+			}
+		}
+
+		&:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+	}
+}
 
 
 

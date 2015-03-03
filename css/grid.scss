@@ -6,12 +6,24 @@ $pad: 8px;
 
 
 /*------------------------------------*\
-    #Grid_width
+    #General
 \*------------------------------------*/
 
 .grid {
 	width: 100%;
 	/* margin: 0 auto; --- Optional */
+
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+[class*='col-'] {
+	float: left;
+	line-height: 0; /* Remember to set line-height for any col-element with text */
+	padding: $pad;
 }
 
 
@@ -30,19 +42,19 @@ $pad: 8px;
 .col-90 {width: 90%;}
 .col-100 {width: 100%;}
 
+/*
 
-/*------------------------------------*\
-    #General
-\*------------------------------------*/
+Might be useful some day.
 
-[class*='col-'] {
-	float: left;
-	line-height: 0;
-	padding: $pad;
+$max: 100;
+$step: 5;
+
+@for $i from 1 through ($max / $step) {
+	$x: ($i * $step);
+
+	.col-#{$x} {
+		width: ($x * 1%);
+	}
 }
 
-.grid:after {
-	content: "";
-	display: table;
-	clear: both;
-}
+*/

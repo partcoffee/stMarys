@@ -4,21 +4,18 @@
 
 
 /* Fonts */
-$primary: 'source-sans-pro', sans-serif; /* Primary font for headlines etc. */
-$secondary: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Secondary font for body text */
-$display: amatic-sc, sans-serif;
+$primary: 'Times', serif;
+$secondary: 'Times', serif;
+$sans: 'Source Sans Pro', sans-serif;
 
 
 /* Colours */
-$main-color: #555; /* Grey */
-$highlight-color: #574f51; /* Gold */
-$black: #212121; /* Off-black */
+$main-color: #838383;
+$dark-grey: #565656;
+$highlight-color: #2d3d51;
+$background: #fbfbfb;
 
-
-/* Variables */
-$spacing: 100px; /* Space between image and text */
-$padding: 100px; /* Space above and below sections */
-$background: #FFF #fafafa #FFF #fafafa #FFF #fafafa; /* Background colours for sections - in order */
+$brown: #6b6b6b;
 
 
 /* Other */
@@ -30,9 +27,23 @@ $background: #FFF #fafafa #FFF #fafafa #FFF #fafafa; /* Background colours for s
 }
 
 
+/* Variables */
+$hard-width: 1400px;
+$soft-width: 910px;
+
+$sections: white $brown white $brown white $brown;
+$sec-col: $dark-grey white $dark-grey white $dark-grey white;
+
+$bck: url('../img/01.jpg')
+			url('../img/02.jpg')
+			url('../img/03.jpg')
+			url('../img/01.jpg');
+
+
 /* Import */
 /* @import 'grid'; */
 /* @import 'retina'; */
+
 
 
 
@@ -43,17 +54,16 @@ $background: #FFF #fafafa #FFF #fafafa #FFF #fafafa; /* Background colours for s
 
 html, body {
 	font-size: 100%;
-	width: 100%;
-	height: 100%;
 	padding: 0;
 	margin: 0;
 	vertical-align: baseline;
 }
 
 body {
+	background: #eeeeee;
+	color: $main-color;
 	-webkit-text-size-adjust: 100%; /* Because iPhones are dumb sometimes. */
 	font-weight: normal;
-	font-style: normal;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -74,37 +84,14 @@ ul, li {
 	list-style-type: none;
 }
 
-img {
-	max-width: 100%;
-}
-
-
-
-
-
-/*------------------------------------*\
-    #Grid
-\*------------------------------------*/
-
-section {
-	padding: 80px 0;
-	width: 100%;
-
-	h2 {
-		padding-top: 40px;
-	}
-}
-
-.contain {
+.wrap {
+	background-color: $background;
+	box-shadow: 2px 4px 14px rgba(0,0,0,0.05);
 	margin: 0 auto;
-	max-width: 500px;
-	padding: 0 30px;
-}
-
-@for $i from 1 through length($background) {
-	section:nth-of-type(#{$i}) {
-		background-color: nth($background, $i);
-	}
+	max-width: $hard-width;
+	min-height: 100%;
+	position: relative;
+	width: 100%;
 }
 
 
@@ -112,57 +99,71 @@ section {
 
 
 /*------------------------------------*\
-    #Main
+    #Main_Style
 \*------------------------------------*/
 
 nav {
-	background: #FFF;
-	box-shadow: 2px 4px 14px rgba(0,0,0,0.05);
-	height: 54px;
 	position: absolute;
-	/* position: fixed; */
-	top: 0;
-	left: 0;
 	width: 100%;
 }
 
 .navbar {
 	margin: 0 auto;
-	max-width: 980px;
-	padding-top: 20px;
-	position: relative;
+	max-width: 1200px;
+	padding: 30px 0 0;
 	text-align: center;
-	width: 100%;
 
 	a {
-		color: #666;
-		font: 500 14px/1 $primary;
-		padding: 25px 0 0 20px;
+		color: #FFF;
+		font: 700 11px/1 $sans;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		padding: 0 12px;
 	}
 }
 
 header {
-	background: $black url('https://unsplash.imgix.net/reserve/fqUehZ3ZRru2Kh11qDBT_IMG_0042.jpg') center bottom no-repeat;
+	background: url('../img/cover.jpg') center no-repeat;
 	background-size: cover;
-	color: #FFF;
-	margin-top: 54px;
-	padding: 200px 0;
+	padding: 280px 0 40px;
 	text-align: center;
 
-	h2 {
-		color: #FFF;
-		font-size: 18px;
+	h1 {
+		color: #fef0cc;
+		font: 700 60px/1 $sans;
+		text-transform: uppercase;
+	}
+
+	ul {
+		padding-top: 200px;
+	}
+}
+
+section {
+	padding: 120px 0;
+}
+
+.mid {
+	h1, h2, p {
+		text-align: center;
 	}
 }
 
 footer {
-	background: $black;
-	color: rgba(white, 0.8);
-	font: 9px/22px $secondary;
-	letter-spacing: 2px;
-	padding: 60px 30px 50px;
+	background: url('../img/cover.jpg') no-repeat center;
+	background-size: cover;
+	font: 400 14px/1.8 $secondary;
+	padding: 20px 0;
 	text-align: center;
-	text-transform: uppercase;
+	width: 100%;
+
+	p {
+		color: rgba(white, 0.4);
+		font-family: $sans;
+		font-size: 12px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+	}
 }
 
 
@@ -170,35 +171,80 @@ footer {
 
 
 /*------------------------------------*\
-    #Element
+    #Element_Style
 \*------------------------------------*/
 
-section {
+.logo {
+	display: none;
+}
 
-	&:first-of-type {
-		padding: 100px 0 (100px-14);
+h1, h2, p {
+	margin: auto;
+	max-width: ($soft-width * 0.6);
+	padding: 0 30px;
+	width: 100%;
+}
 
-		h2, p, a {
-			padding: 0;
-			width: 100%;
+[class*='col-'] {
+	h1, h2, p {
+		max-width: 420px;
+	}
+}
+
+@for $i from 1 through length($sections) {
+	section:nth-of-type(#{$i}) {
+		background-color: nth($sections, $i);
+	}
+}
+
+@for $i from 1 through length($sec-col) {
+	section:nth-of-type(#{$i}) {
+
+		h1, p {
+			color: nth($sec-col, $i);
 		}
 	}
 }
 
-.break {
-	border-top: 1px solid #FFF;
-	display: block;
-	height: 1px;
-	margin: 22px 0 20px;
-	width: 10%;
+.image {
+	background: no-repeat center;
+	background-size: cover;
+	height: 400px;
+	width: 100%;
 }
 
-.cover {
-	background: url('../img/cover.jpg') center no-repeat;
-	background-attachment: fixed;
-	background-size: 100%;
-	height: 580px;
+@for $i from 1 through length($bck) {
+	.image:nth-of-type(#{$i}) {
+		background-image: nth($bck, $i);
+	}
+}
+
+.words {
+	background: $highlight-color;
+	padding: 160px 0;
+	text-align: center;
 	width: 100%;
+
+	h1 {
+		color: #FFF;
+	}
+}
+
+.button {
+	border: 1px solid;
+	color: inherit;
+	display: inline-block;
+	margin: 10px 0 0;
+	padding: 6px 20px;
+}
+
+.list {
+	clear: both;
+	padding-top: 40px;
+
+	&:first-of-type {
+		padding-top: 0;
+	}
 }
 
 
@@ -209,33 +255,39 @@ section {
     #Typography
 \*------------------------------------*/
 
+h1, h2 {
+	color: $dark-grey;
+	font-family: $secondary;
+	font-style: italic;
+	font-weight: 300;
+	text-transform: capitalize;
+}
+
 h1 {
-	font: 500 80px/1 $display;
-	margin: 10px 0 0;
-	padding: 0 30px;
-	text-transform: uppercase;
+	font-size: 32px;
+	letter-spacing: 1px;
 }
 
 h2 {
-	color: $highlight-color;
-	font: 600 20px/1 $primary;
+	color: $main-color;
+	font-size: 16px;
 	letter-spacing: 1px;
-	margin: 20px 0 0 (-22px/20);
-	text-transform: uppercase;
+	padding-bottom: 20px;
 }
 
 p {
-	color: $main-color;
-	font: 14px/24px $secondary;
+	color: $dark-grey;
+	font: 300 15.5px/1.8 $primary;
 }
 
 a {
 	@include animate(0.3s ease-out);
-	color: $highlight-color;
+	color: inherit;
+	font: 300 15px/1 $primary;
 	text-decoration: none;
 
 	&:hover {
-		color: $main-color;
+		opacity: 0.5;
 	}
 }
 
@@ -247,54 +299,78 @@ a {
     #Responsive
 \*------------------------------------*/
 
-@media only screen and (min-width: 970px) {
+@media only screen and (min-width: 960px) {
 	.navbar {
+		padding: 30px 30px 0;
 		text-align: right;
+
+		a {
+			font-size: 12px;
+		}
 	}
 
-	.contain {
-		max-width: 970px;
+	.logo {
+		display: block;
+		float: left;
 	}
 
-	section {
-		padding: $padding 0;
-
-		h2 {
-			padding-top: 0;
-		}
-
-		h2, p, img {
-			width: 50%;
-		}
-
-		&:nth-of-type(odd):not(:first-of-type) {
-			img {
-				float: right;
-				padding-left: ($spacing/2);
-			}
-
-			h2, p {
-				float: left;
-				padding-right: ($spacing/2);
-			}
-		}
-
-		&:nth-of-type(even):not(:first-of-type) {
-			img {
-				float: left;
-				padding-right: ($spacing/2);
-			}
-
-			h2, p {
-				float: right;
-				padding-left: ($spacing/2);
-			}
-		}
+	.grid {
+		overflow: hidden;
+		width: 100%;
 
 		&:after {
 			content: "";
 			display: table;
-			clear: both;
+			clear: both; /* Otherwise it will collapse on itself */
+		}
+	}
+
+	[class*='col-'] {
+		width: 50%;
+
+		h1, h2, p {
+		  padding: 0;
+		}
+	}
+
+	.col-R {
+		float: right;
+
+		h1, h2, p {
+			margin: 0 auto 0 0;
+		}
+	}
+
+	.col-L {
+		float: left;
+
+		h1, h2, p {
+			margin: 0 0 0 auto;
+		}
+	}
+
+	h1, h2, p {
+		max-width: $soft-width;
+	}
+}
+
+@media only screen and (min-width: 1400px) {
+	footer {
+		background: transparent;
+		position: absolute; /* Places the footer outside the main-content on larger monitors */
+
+		p {
+			color: $main-color;
+		}
+	}
+}
+
+@media only screen and (max-height: 600px) {
+	header {
+		padding: 200px 0 40px;
+
+		ul {
+			padding-top: 80px;
 		}
 	}
 }

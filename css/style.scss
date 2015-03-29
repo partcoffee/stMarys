@@ -75,6 +75,7 @@ body {
 }
 
 img {
+	border: 0;
 	max-width: 100%;
 }
 
@@ -123,7 +124,7 @@ nav {
 }
 
 header {
-	background: url('../img/cover.jpg') center no-repeat;
+	background: url('../img/cover1.jpg') center no-repeat;
 	background-size: cover;
 	text-align: center;
 
@@ -134,7 +135,7 @@ header {
 
 .title {
 	width: 720px;
-	padding: 270px 0 190px;
+	padding: 200px 0 160px;
 }
 
 section {
@@ -148,7 +149,7 @@ section {
 }
 
 footer {
-	background: url('../img/cover.jpg') no-repeat center;
+	background: url('../img/cover1.jpg') no-repeat center;
 	background-size: cover;
 	font: 400 14px/1.8 $secondary;
 	padding: 20px 0;
@@ -171,10 +172,6 @@ footer {
 /*------------------------------------*\
     #Element_Style
 \*------------------------------------*/
-
-.logo {
-	display: none;
-}
 
 h1, h2, p {
 	margin: auto;
@@ -307,11 +304,6 @@ a {
 		}
 	}
 
-	.logo {
-		display: block;
-		float: left;
-	}
-
 	.grid {
 		overflow: hidden;
 		width: 100%;
@@ -364,8 +356,8 @@ a {
 }
 
 @media only screen and (max-height: 600px) {
-	header {
-		padding: 200px 0 40px;
+	.title {
+		padding: 200px 0 120px;
 
 		ul {
 			padding-top: 80px;
